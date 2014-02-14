@@ -1,0 +1,12 @@
+{
+    "name": "layerscope", 
+    "license": "MPL 2.0", 
+    "author": "Morris Tseng <mtseng@mozilla.com>", 
+    "version": "0.1", 
+    "fullName": "LayerScopeAddon", 
+    "id": "jid1-h5JBHvCkfBsRIQ", 
+    "description": "LayerScope add-on",
+    "dependencies": [
+      "pathfinder"
+    ]
+}
