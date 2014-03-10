@@ -1,4 +1,4 @@
-self.port.on("onShow", function(devicesList) {
+self.port.on("updateDevices", function(devicesList) {
   $("#selectDevices").empty().append("<option value='computer'>local computer</option>");
   for (var index in devicesList) {
     $("#selectDevices").append("<option value='" + devicesList[index] + "'>" + devicesList[index] + "</option>");
