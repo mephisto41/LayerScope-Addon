@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+import os
+import argparse
+
+def run(binary):
+    print "testing layerscope-addon..."
+    cmd = "./scripts/run.sh"
+    if binary:
+        cmd += " " + binary
+    os.system(cmd)
+
+def build(filename):
+    print "packing layerscope-addon..."
+    os.system('./scripts/build.sh')
+    if filename:
+        print "change layerscope.xpi to " + filename
+        os.system('mv layerscope.xpi ' + filename);
+
+def main():
+    parser = argparse.ArgumentParser(description='LayerScope addon command tool', version='1.0')
+
+    subparsers = parser.add_subparsers(title='command options', dest="cmd")
+    subparsers.add_parser('bootstrap', help='initialize your environment')
+
+    run_parser = subparsers.add_parser('run', help='run this addon and you can debug it')
+    run_parser.add_argument('-b', dest='binary', help='run specific firefox binary, should be a path')
+
+    pack_parser = subparsers.add_parser('build', help='pack it as a xpi file for your firefox browser')
+    pack_parser.add_argument('-o', dest='name', help='output file name')
+
+    result = parser.parse_args()
+
+    if result.cmd == "bootstrap":
+        print "bootstraping..."
+        os.system('./scripts/bootstrap.sh')
+    elif result.cmd == "run":
+        run(result.binary)
+    elif result.cmd == "build":
+        build(result.name)
+
+if __name__ == '__main__':
+    main()
