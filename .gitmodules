@@ -1,0 +1,8 @@
+[submodule "sdk"]
+	path = sdk
+	url = https://github.com/mozilla/addon-sdk.git
+	branch = master
+[submodule "data/layerscope"]
+	path = data/layerscope
+	url = https://github.com/mozilla/layerscope.git
+	branch = master

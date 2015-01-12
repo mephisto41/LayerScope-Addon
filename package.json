@@ -1,12 +1,9 @@
 {
-    "name": "layerscope", 
-    "license": "MPL 2.0", 
-    "author": "Morris Tseng <mtseng@mozilla.com>", 
-    "version": "0.1", 
-    "fullName": "LayerScopeAddon", 
-    "id": "jid1-h5JBHvCkfBsRIQ", 
-    "description": "LayerScope add-on",
-    "dependencies": [
-      "pathfinder"
-    ]
+    "name": "layerscope",
+    "license": "MPL 2.0",
+    "author": "Morris Tseng <mtseng@mozilla.com>, Boris Chiou <boris@mozilla.com>",
+    "version": "1.0",
+    "fullName": "LayerScopeAddon",
+    "id": "mozilla-loves-you",
+    "description": "This is LayerScope add-on, please enjoy it.\nReference link: https://wiki.mozilla.org/Platform/GFX/LayerScope"
 }
