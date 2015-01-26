@@ -4,8 +4,8 @@ var $d = $("<span>").append("<button id='saveFrameAddon' style='color:blue'>Save
 $("#saveFrame").before($d);
 
 $("#saveFrameAddon").click(function() {
-  unsafeWindow.convertImageDataToDataURL(unsafeWindow.frames);
-  self.port.emit("saveFrames", unsafeWindow.frames);
+  var frames = unsafeWindow.LayerScope.Session.frames;
+  self.port.emit("saveFrames", frames);
 });
 
 $("#loadFrameAddon").click(function() {
@@ -22,7 +22,7 @@ var Addon = createObjectIn(unsafeWindow, {defineAs: "Addon"});
 
 self.port.on("afterLoadFrames", function(frames) {
   // we should clone this object for layerview.js
-  unsafeWindow.assignNewFrames(cloneInto(frames, Addon));
+  unsafeWindow.LayerScope.Session.begin(cloneInto(frames, Addon));
 });
 
 var fileQueue = [];
