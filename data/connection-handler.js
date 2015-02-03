@@ -1,11 +1,14 @@
-var $d = $("<span>").append("<button id='saveFrameAddon' style='color:blue'>Save Frame(Addon)</button>")
-                    .append("<button id='loadFrameAddon' style='color:blue'>Load Frame(Addon)</button>");
+var $d = $("<span>").append("<button id='saveFrameAddon'>Save Frame(Addon)</button>")
+                    .append("<button id='loadFrameAddon'>Load Frame(Addon)</button>");
 
-$("#saveFrame").before($d);
+$("#save-btn").after($d);
 
+$("#saveFrameAddon, #loadFrameAddon").addClass(".ui-button")
+                    .addClass(".ui-button-text")
+                    .css({"color": "blue", "margin-left" : "5px"});
 $("#saveFrameAddon").click(function() {
-  unsafeWindow.convertImageDataToDataURL(unsafeWindow.frames);
-  self.port.emit("saveFrames", unsafeWindow.frames);
+  var frames = unsafeWindow.LayerScope.Session.frames;
+  self.port.emit("saveFrames", frames);
 });
 
 $("#loadFrameAddon").click(function() {
@@ -13,8 +16,8 @@ $("#loadFrameAddon").click(function() {
 });
 
 self.port.on("onChangeIP", function(params) {
-  $("#urlfield").val("ws://localhost:" + params.port);
-  $("#connect").click();
+  $("#url-address").val("ws://localhost:" + params.port);
+  $("#connection-btn").click();
 });
 
 // create new object into layerview.js (page script) scope
@@ -22,7 +25,7 @@ var Addon = createObjectIn(unsafeWindow, {defineAs: "Addon"});
 
 self.port.on("afterLoadFrames", function(frames) {
   // we should clone this object for layerview.js
-  unsafeWindow.assignNewFrames(cloneInto(frames, Addon));
+  unsafeWindow.LayerScope.Session.begin(cloneInto(frames, Addon));
 });
 
 var fileQueue = [];
